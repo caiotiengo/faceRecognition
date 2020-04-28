@@ -86,7 +86,7 @@ model.add(MaxPooling2D(pool_size=(2,2),strides=(2,2)))
 model.add(Flatten())
 
 
-#fully connected neural networks
+#Melhorando performance (Me baseando nos docs do keras)
 model.add(Dense(1024, activation='relu'))
 model.add(Dropout(0.2))
 model.add(Dense(1024, activation='relu'))
@@ -94,13 +94,15 @@ model.add(Dropout(0.2))
 
 model.add(Dense(num_labels, activation='softmax'))
 
+
+#---Forma feita pela indiana ----
 #model.add(Dense(2*2*2*2*num_features, activation='relu'))
 #model.add(Dropout(0.2))
 #model.add(Dense(2*2*2*2*num_features, activation='relu'))
 #model.add(Dropout(0.2))
 
 #model.add(Dense(num_labels, activation='softmax'))
-
+#------ //// -----------//// ----
 model.compile(loss=categorical_crossentropy,optimizer=Adam(),metrics=['accuracy'])
 model.fit(X_train,train_y,batch_size=batch_size,epochs=epochs,verbose=1,validation_data=(X_test,test_y),shuffle=True)
 #Salvar model
